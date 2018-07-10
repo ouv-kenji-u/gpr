@@ -1,0 +1,20 @@
+set terminal postscript enhanced eps
+unset mouse
+unset key
+unset xlabel
+unset ylabel
+set xrange [0:6.3]
+set yrange [-2:2]
+set ylabel "f(x)"
+set xlabel "x"
+set bars 0.1
+
+set output "10_f(x).eps"
+set key left bottom
+plot "gp_1_10.txt" using 1:2:3:4 title "Predicted value" with yerrorbar pt 7 ps 0.3,\
+     "gp_1_10.txt" using 1:2 notitle w lp lt 1 lw 2 pt 7 ps 0.1,\
+     "sin_noise_10.txt" using 1:2 notitle w p pt 7 ps 0.7 lc rgbcolor "#ffffff",\
+     "sin_noise_10.txt" using 1:2 title "Observed value" w p ps 0.9 pt 6,\
+     sin (x) w l lt 2
+unset output
+
